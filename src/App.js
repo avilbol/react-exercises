@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg'
-import ProfilePreference from './ProfilePreference';
+import logo from './logo.svg';
+import './App.css';
+import LikedBy from './LikedBy'
+
+/*
+Display a list of movies where each movie contains a list of users that favorited it.
+
+For detailed instructions, refer to instructions.md.
+*/
 
 const profiles = [
   {
@@ -38,7 +45,7 @@ const profiles = [
 const users = {
   1: {
     id: 1,
-    name: 'Jane Cruz',
+    name: 'Jane Jones',
     userName: 'coder',
   },
   2: {
@@ -52,7 +59,7 @@ const users = {
     userName: 'user123',
   },
   4: {
-    id: 4,
+    id: 3,
     name: 'John Doe',
     userName: 'user123',
   },
@@ -71,7 +78,7 @@ const users = {
 const movies = {
   1: {
     id: 1,
-    name: 'Planet Earth 1',
+    name: 'Planet Earth',
   },
   2: {
     id: 2,
@@ -91,21 +98,43 @@ const movies = {
   },
 };
 
+let groupByMovie = () => {
+  let group = {}
+  profiles.forEach(profile => {
+    let movieID = profile.favoriteMovieID
+    if(!group[movieID]) {
+      group[movieID] = []
+    }
+    group[movieID].push({
+      id: users[profile.userID].id,
+      name: users[profile.userID].name
+    })
+  })
+
+  return group
+}
+
 class App extends Component {
   render() {
+    let moviesLikes = groupByMovie()
     return (
-      <div>
+      <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
-        <h2>Favorite Movies</h2>
-		{profiles.map((profile)=>(
-    		<ProfilePreference 
-      			userName={users[profile.userID].name}
-  				favoriteMovie={movies[profile.favoriteMovieID].name}/> 
-    	))}
-      </div>
+        <h2>How Popular is Your Favorite Movie?</h2>
+		{Object.entries(movies)
+			.map(moviePair => moviePair[1])
+			.map((movie) => (
+                <div>
+                    <h2>{movie.name}</h2>
+                    <LikedBy 
+                        usersLikedBy={moviesLikes[movie.id]} 
+                        emptyMessage="None of the current users liked this movie"/>
+                </div>
+         	))}
+      	</div>
     );
   }
 }
