@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types'
 
 class ItemList extends Component {
 
@@ -21,6 +21,11 @@ class ItemList extends Component {
       </div>
     )
   }
+}
+
+ItemList.propTypes = {
+	items: PropTypes.array.isRequired(),
+  	onDeleteLastItem: PropTypes.func.isRequired()
 }
 
 export default ItemList;

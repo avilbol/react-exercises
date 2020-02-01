@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types'
 
 class ItemForm extends Component {
   
@@ -32,6 +32,10 @@ class ItemForm extends Component {
       </form>
     )
   }
+}
+
+ItemForm.propTypes = {
+  	onSubmit: PropTypes.func.isRequired()
 }
 
 export default ItemForm;
