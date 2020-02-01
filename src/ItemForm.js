@@ -7,6 +7,11 @@ class ItemForm extends Component {
   	"value": ""
   }
 
+  onSubmit = event => {
+  	event.preventDefault()
+    this.props.onSubmit(this.state.value)
+  }
+
   handleChange = event => {
     this.setState({ value: event.target.value })
   };
@@ -17,7 +22,7 @@ class ItemForm extends Component {
   
   render() {
     return (
-      <form onSubmit={this.props.onSubmit(this.state.value)}>
+      <form onSubmit={this.onSubmit}>
         <input
         	type="text"
         	placeholder="Enter New Item"

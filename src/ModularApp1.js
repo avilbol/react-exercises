@@ -1,5 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
+import ItemForm from './ItemForm'
+import ItemList from './ItemList'
 import './App.css';
 
 class ModularApp1 extends React.Component {
@@ -11,10 +13,9 @@ class ModularApp1 extends React.Component {
     this.setState({ value: event.target.value });
   };
 
-  addItem = event => {
-    event.preventDefault();
+  addItem = newItem => {
     this.setState(oldState => ({
-      items: [...oldState.items, this.state.value],
+      items: [...oldState.items, newItem],
     }));
   };
 
