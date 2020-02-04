@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import UserGameApp from './user-game-data/UserGameApp';
+import ChatApp from './chat-exercise/ChatApp';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<UserGameApp />, document.getElementById('root'));
+ReactDOM.render(<ChatApp />, document.getElementById('root'));
 registerServiceWorker();
