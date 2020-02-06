@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ChatApp from './chat-exercise/ChatApp';
+import BasicRoutingApp from './basic-routing/BasicRoutingApp';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<ChatApp />, document.getElementById('root'));
+ReactDOM.render(<BasicRoutingApp />, document.getElementById('root'));
 registerServiceWorker();
